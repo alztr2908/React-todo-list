@@ -1,0 +1,26 @@
+*:focus {
+  outline: 3px dashed #228bec;
+  outline-offset: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.body {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(214, 208, 208);
+}
+
+.box {
+  background-color: rgb(221, 161, 161);
+  height: 5em;
+  width: 30em;
+  margin: 2em;
+  text-align: center;
+}
+
+.todoButton button {
+  margin: 0 0.5em 0 0.5em;
+}
