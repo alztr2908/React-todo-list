@@ -13,12 +13,23 @@ ul {
   background-color: rgb(214, 208, 208);
 }
 
+.line-break {
+  width: 100%;
+}
+
 .box {
   background-color: rgb(221, 161, 161);
-  height: 5em;
+  height: 7em;
   width: 30em;
   margin: 2em;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.todoButton {
+  background-color: #59be3f;
 }
 
 .todoButton button {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 const Header = (props) => {
   const [name, setName] = useState("");
@@ -17,11 +18,21 @@ const Header = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' value={name} onChange={handleChange} />
-      <br />
-      <button type='submit'>Submit</button>
-    </form>
+    <>
+      <h1>Alz todo list</h1>
+      <form onSubmit={handleSubmit}>
+        <Form.Control
+          size='lg'
+          type='text'
+          placeholder='Add Task'
+          value={name}
+          onChange={handleChange}
+        />
+        <Button variant='outline-danger' type='submitv'>
+          Submit
+        </Button>
+      </form>
+    </>
   );
 };
 
