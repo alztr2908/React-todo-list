@@ -1,12 +1,10 @@
 import "../custom.css";
 import { useState } from "react";
-import { Button, OverlayTrigger, Popover, Alert } from "react-bootstrap";
+import { Button, Popover, Col, Row, Form } from "react-bootstrap";
 
 const Todos = (props) => {
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-
-  console.log(props);
 
   function handleSubmit() {
     if (name !== "") {
@@ -21,46 +19,62 @@ const Todos = (props) => {
   }
 
   const popOverSettings = (
-    <Popover>
-      <Button variant='primary' onClick={() => setIsEditing(true)}>
+    <>
+      <Button
+        className='p-3'
+        variant='primary'
+        onClick={() => setIsEditing(true)}
+      >
         Edit
       </Button>
-      <Button variant='danger' onClick={() => props.deleteTasks(props.id)}>
+      <Button
+        className='ps-3'
+        variant='danger'
+        onClick={() => props.deleteTasks(props.id)}
+      >
         Delete
       </Button>
-    </Popover>
+    </>
   );
 
   const popOverEdit = (
-    <Popover>
+    <>
       <Button variant='warning' onClick={() => setIsEditing(false)}>
         Cancel
       </Button>
       <Button
+        className='ps-3'
         variant='outline-success'
         onClick={() => handleSubmit()}
         type='submit'
       >
         Save
       </Button>
-    </Popover>
+    </>
   );
 
   const viewTemplate = (
     <div style={{ display: "flex" }}>
-      <h3>{props.name}</h3>
       <input
         type='checkbox'
         defaultChecked={props.completed}
         onChange={() => props.toggleTaskCompleted(props.id)}
+        style={{ width: "3em", height: "3em" }}
       />
+      <h3 className='d-flex align-items-center ms-3'>{props.name}</h3>
     </div>
   );
 
+  const newNameMessage = `New name for ${props.name}`;
   const editTemplate = (
     <>
-      <input type='text' value={name} onChange={handleChange} />
-      <br />
+      <Form.Control
+        size='lg'
+        type='text'
+        placeholder={newNameMessage}
+        value={name}
+        onChange={handleChange}
+      />
     </>
   );
 
@@ -68,21 +82,13 @@ const Todos = (props) => {
   const doButton = isEditing ? popOverEdit : popOverSettings;
 
   return (
-    <li>
-      <div className='box'>
-        <div className='taskMargin'>{doTask}</div>
-        <div class='line-break'></div>
-
-        <OverlayTrigger
-          delay={{ show: 250, hide: 400 }}
-          placement='right'
-          overlay={doButton}
-        >
-          <Button variant='success' onClick={() => setIsEditing(false)}>
-            Settings
-          </Button>
-        </OverlayTrigger>
-      </div>
+    <li className='my-2 box'>
+      <Row>
+        <Col sm={9} className='d-flex p-3'>
+          {doTask}
+        </Col>
+        <Col className='d-flex pe-2'>{doButton}</Col>
+      </Row>
     </li>
   );
 };

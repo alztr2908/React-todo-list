@@ -1,13 +1,24 @@
-const FiltertButton = (props) => {
+import { ToggleButton } from "react-bootstrap";
+
+const FilterButton = (props) => {
+  const color = {
+    All: "outline-success",
+    Active: "outline-danger",
+    Completed: "outline-warning",
+  };
+
   return (
-    <button
-      type='button'
-      aria-pressed={props.isPressed}
-      onClick={() => props.setFilter(props.name)}
+    <ToggleButton
+      id={props.id}
+      type='radio'
+      variant={color[props.name]}
+      checked={props.isPressed}
+      onChange={() => props.setFilter(props.name)}
+      // onClick={() => props.setFilter(props.name)}
     >
       <span>{props.name}</span>
-    </button>
+    </ToggleButton>
   );
 };
 
-export default FiltertButton;
+export default FilterButton;

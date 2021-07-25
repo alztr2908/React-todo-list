@@ -22,13 +22,14 @@ const Header = (props) => {
       <h1>Alz todo list</h1>
       <form onSubmit={handleSubmit}>
         <Form.Control
+          style={{ textAlign: "center" }}
           size='lg'
           type='text'
           placeholder='Add Task'
           value={name}
           onChange={handleChange}
         />
-        <Button variant='outline-danger' type='submitv'>
+        <Button className='my-2 p-3' variant='danger' type='submit' size='lg'>
           Submit
         </Button>
       </form>

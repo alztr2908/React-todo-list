@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import Form from "./components/Form";
 import Todos from "./components/Todos";
 import FilterButton from "./components/FilterButton";
-import { Alert } from "react-bootstrap";
+import { Alert, Container, Row, Col, ButtonGroup } from "react-bootstrap";
 
 function usePrevious(value) {
   const ref = useRef();
@@ -73,6 +73,7 @@ function App(props) {
   const filterList = FILTER_NAMES.map((name) => (
     <FilterButton
       key={name}
+      id={name}
       name={name}
       isPressed={name === filter}
       setFilter={setFilter}
@@ -81,7 +82,7 @@ function App(props) {
 
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = (
-    <Alert variant='warning' style={{ textAlign: "center" }}>
+    <Alert variant='warning' className='text-center'>
       {taskList.length} {tasksNoun} remaining
     </Alert>
   );
@@ -105,14 +106,24 @@ function App(props) {
   }, [tasks.length, prevTaskLength]);
 
   return (
-    <div>
-      <Form addTasks={addTasks} />
-      {filterList}
-      <h2 tabIndex='-1' ref={listHeadingRef}>
-        {headingText}
-      </h2>
-      <ul>{taskList}</ul>
-    </div>
+    <Container fluid className='py-5'>
+      <Row className='justify-content-md-center pb-3'>
+        <Col xs lg='5' className='justify-content-center text-center'>
+          <Form addTasks={addTasks} />
+        </Col>
+      </Row>
+      <Row className='justify-content-md-center'>
+        <Col xs lg='5' className='justify-content-center text-center'>
+          <ButtonGroup>{filterList}</ButtonGroup>
+        </Col>
+      </Row>
+      <Row className='justify-content-md-center pt-3'>
+        <Col xs lg='5' className='justify-content-center text-center'>
+          <h2 ref={listHeadingRef}>{headingText}</h2>
+          <ul>{taskList}</ul>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
