@@ -120,7 +120,13 @@ function App(props) {
       <Row className='justify-content-md-center pt-3'>
         <Col xs lg='5' className='justify-content-center text-center'>
           <h2 ref={listHeadingRef}>{headingText}</h2>
-          <ul>{taskList}</ul>
+        </Col>
+      </Row>
+      <Row className='justify-content-md-center pt-3'>
+        <Col xs lg='5' className='justify-content-center text-center'>
+          <ul style={{ marginLeft: "auto", marginRight: "auto" }}>
+            {taskList}
+          </ul>
         </Col>
       </Row>
     </Container>

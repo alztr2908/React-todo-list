@@ -1,6 +1,6 @@
 import "../custom.css";
 import { useState } from "react";
-import { Button, Popover, Col, Row, Form } from "react-bootstrap";
+import { Button, Col, Row, Form } from "react-bootstrap";
 
 const Todos = (props) => {
   const [name, setName] = useState("");
@@ -54,14 +54,15 @@ const Todos = (props) => {
   );
 
   const viewTemplate = (
-    <div style={{ display: "flex" }}>
+    <div className='d-flex flex-wrap'>
       <input
         type='checkbox'
         defaultChecked={props.completed}
         onChange={() => props.toggleTaskCompleted(props.id)}
         style={{ width: "3em", height: "3em" }}
       />
-      <h3 className='d-flex align-items-center ms-3'>{props.name}</h3>
+      {/* <h3 className='d-flex align-items-center ms-3 longWord '>{props.name}</h3> */}
+      <h3 className='align-items-center ms-3 longWord '>{props.name}</h3>
     </div>
   );
 
@@ -82,9 +83,9 @@ const Todos = (props) => {
   const doButton = isEditing ? popOverEdit : popOverSettings;
 
   return (
-    <li className='my-2 box'>
-      <Row>
-        <Col sm={9} className='d-flex p-3'>
+    <li className='my-2'>
+      <Row className='justify-content-md-center ml-6'>
+        <Col sm={8} className='d-flex p-3 box'>
           {doTask}
         </Col>
         <Col className='d-flex pe-2'>{doButton}</Col>

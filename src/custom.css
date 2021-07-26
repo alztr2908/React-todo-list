@@ -17,6 +17,12 @@ ul {
   background-color: aquamarine;
 }
 
+.longWord {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 400px;
+}
+
 [type="radio"] {
   display: none;
 }
